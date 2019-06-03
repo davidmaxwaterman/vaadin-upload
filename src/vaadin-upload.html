@@ -602,7 +602,7 @@ This program is available under Apache License Version 2.0, available at https:/
 
           const formData = new FormData();
 
-          file.uploadTarget = this.target || '';
+          file.uploadTarget = file.uploadTarget || this.target || '';
           file.formDataName = this.formDataName;
 
           const evt = this.dispatchEvent(
@@ -798,6 +798,12 @@ This program is available under Apache License Version 2.0, available at https:/
 
         _isMultiple() {
           return this.maxFiles != 1;
+        }
+
+        clearComplete() {
+          this.files = this.files.filter((file) => {
+           return !file.complete;
+          });
         }
 
         /**
